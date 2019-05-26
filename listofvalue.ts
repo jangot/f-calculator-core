@@ -1,5 +1,9 @@
 //список стоимости элементов
-module.exports = {
+export interface ValuesType {
+	[key: string]: number;
+}
+
+export const values: ValuesType = {
 	//одинарные прыжки
     "1t":0.4, "1s":0.4, "1lo":0.5, "1f":0.5, "1lz":0.6, "1eu":0,
 	//двойные прыжки
