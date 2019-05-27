@@ -1,4 +1,5 @@
 import { Spin } from './src/class/spin';
+// import { Jump } from './src/class/jump';
 
 const el = new Spin(Spin.TYPES[1]);
 
