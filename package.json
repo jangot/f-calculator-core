@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "npm init"
+    "test": "npm init",
+    "go": "npx tsc && node index.js"
   },
   "author": "",
   "license": "ISC",
