@@ -18,14 +18,6 @@ export class Spin extends AbstractFCElement {
 
     level = '';
 
-    constructor (type: string) {
-        super(type);
-
-        if (Spin.TYPES.indexOf(this.type) === -1) {
-            throw Error('There is not the type');
-        }
-    }
-
     setLevel(level: string) {
         if (Spin.LEVELS.indexOf(level) === -1) {
             throw Error(`There is not "${level}" in the Spin`);
