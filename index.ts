@@ -1,9 +1,13 @@
 import { Spin } from './src/class/spin';
-// import { Jump } from './src/class/jump';
+import { Jump } from './src/class/jump';
 
-const el = new Spin(Spin.TYPES[1]);
+const spin = new Spin(Spin.TYPES[1]);
+spin.setLevel(Spin.LEVELS[1]);
 
-el.setLevel(Spin.LEVELS[1]);
 
-console.log(el.getValue());
+const jump = new Jump(Jump.TYPES[1]);
+jump.setTurns(Jump.TURNS[3]);
+
+console.log(spin.getValue());
+console.log(jump.getValue());
 

@@ -2,6 +2,14 @@ import { AbstractFCElement } from './abstract-element';
 
 export class Jump extends AbstractFCElement {
 
+    static TYPES = [
+        't',
+        's',
+        'lo',
+        'f',
+        'lz'
+    ];
+
     static TURNS = [
         '1',
         '2',
@@ -20,6 +28,6 @@ export class Jump extends AbstractFCElement {
     getKey(): string {
         const type = super.getKey();
 
-        return type + this.turns;
+        return this.turns + type;
     }
 }

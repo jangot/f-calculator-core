@@ -1,7 +1,10 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 var spin_1 = require("./src/class/spin");
-// import { Jump } from './src/class/jump';
-var el = new spin_1.Spin(spin_1.Spin.TYPES[1]);
-el.setLevel(spin_1.Spin.LEVELS[1]);
-console.log(el.getValue());
+var jump_1 = require("./src/class/jump");
+var spin = new spin_1.Spin(spin_1.Spin.TYPES[1]);
+spin.setLevel(spin_1.Spin.LEVELS[1]);
+var jump = new jump_1.Jump(jump_1.Jump.TYPES[1]);
+jump.setTurns(jump_1.Jump.TURNS[3]);
+console.log(spin.getValue());
+console.log(jump.getValue());
