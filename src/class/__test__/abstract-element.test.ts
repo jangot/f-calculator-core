@@ -3,7 +3,7 @@ import { AbstractFCElement } from '../abstract-element';
 
 describe('AbstractFCElement', () => {
     it('should return correct key', () => {
-        const TYPE = AbstractFCElement.TYPES[0];
+        const TYPE = AbstractFCElement.TYPES.ABSTRACT_TYPE;
 
         const el = new AbstractFCElement({[TYPE]: 1});
         el.setType(TYPE);
@@ -12,7 +12,7 @@ describe('AbstractFCElement', () => {
     });
 
     it('should return correct value', () => {
-        const TYPE = AbstractFCElement.TYPES[0];
+        const TYPE = AbstractFCElement.TYPES.ABSTRACT_TYPE;
         const VALUE = 1;
 
         const el = new AbstractFCElement({[TYPE]: VALUE});
@@ -30,7 +30,7 @@ describe('AbstractFCElement', () => {
     });
 
     it('should throw exception if there is not value', () => {
-        const TYPE = AbstractFCElement.TYPES[0];
+        const TYPE = AbstractFCElement.TYPES.ABSTRACT_TYPE;
 
         const el = new AbstractFCElement({});
         el.setType(TYPE);

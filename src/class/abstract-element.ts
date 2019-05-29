@@ -1,25 +1,28 @@
-import { ValuesType } from '../../listofvalue';
 import { ElementGettingFieldError} from './error/element-getting-field-error';
 import { ElementSettingFieldError} from './error/element-setting-field-error';
 import { ElementDataError} from './error/element-data-error';
 import FCElement from '../interface/element';
+import { KeyValue } from '../interface/key-value';
 
 export class AbstractFCElement implements FCElement {
     ['constructor']: typeof AbstractFCElement;
 
-    static TYPES: string[] = ['abstractType'];
+    static TYPES: KeyValue<string> = {
+        ABSTRACT_TYPE: 'abstractType'
+    };
 
-    data: ValuesType = {};
+    data: KeyValue<number> = {};
     type = '';
 
-    constructor(data: ValuesType) {
+    constructor(data: KeyValue<number>) {
         this.data = data;
     }
 
     setType(type: string) {
-        if (this.constructor.TYPES.indexOf(type) === -1) {
-            this.throwSettingsFieldError(type, this.constructor.TYPES);
+        if (!this.checkValueInList<string>(this.constructor.TYPES, type)) {
+            this.throwSettingsFieldError<string>(type, this.constructor.TYPES);
         }
+
         this.type = type;
 
         return this;
@@ -35,17 +38,32 @@ export class AbstractFCElement implements FCElement {
     getValue() {
         const key = this.getKey();
 
-        if (!this.data[key]) {
+        if (this.data[key] === undefined) {
             throw new ElementDataError(key);
         }
         return this.data[key];
+    }
+
+    protected checkValueInList<T>(list: KeyValue<T>, value: T) {
+        for (let key in list) {
+            if (list[key] === value) {
+                return true;
+            }
+        }
+
+        return false;
     }
 
     protected throwGettingFieldError (type: string) {
         throw new ElementGettingFieldError(type);
     }
 
-    protected throwSettingsFieldError (value: string, list: string[]) {
-        throw new ElementSettingFieldError(value, list);
+    protected throwSettingsFieldError<T> (value: string, keyValue: KeyValue<T>) {
+        const list: T[] = [];
+        for (let key in keyValue) {
+            list.push(keyValue[key]);
+        }
+
+        throw new ElementSettingFieldError<T>(value, list);
     }
 }
