@@ -11,11 +11,11 @@ export class Spin extends AbstractFCElement {
     };
 
     static LEVELS: KeyValue<string> = {
-        'B': 'b',
-        '1': '1',
-        '2': '2',
-        '3': '3',
-        '4': '4'
+        LB: 'b',
+        L1: '1',
+        L2: '2',
+        L3: '3',
+        L4: '4'
     };
 
     level = '';

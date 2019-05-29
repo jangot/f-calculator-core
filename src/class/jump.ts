@@ -1,10 +1,6 @@
 import { AbstractFCElement } from './abstract-element';
 import { KeyValue } from '../interface/key-value';
 
-interface SpecialMarks {
-    [key: string]: string[];
-}
-
 export class Jump extends AbstractFCElement {
 
     static TYPES: KeyValue<string> = {
@@ -16,10 +12,10 @@ export class Jump extends AbstractFCElement {
     };
 
     static TURNS: KeyValue<string> = {
-        '1': '1',
-        '2': '2',
-        '3': '3',
-        '4': '4'
+        T1: '1',
+        T2: '2',
+        T3: '3',
+        T4: '4'
     };
 
     static HAS_ARRIS: KeyValue<boolean> = {
@@ -33,21 +29,18 @@ export class Jump extends AbstractFCElement {
         SECOND: '<<'
     };
 
-
     turns = '';
     arris = false;
     notFullSpin = '';
 
     setTurns(turns: string) {
-        if (!Jump.TURNS[turns]) {
+        if (!this.checkValueInList<string>(Jump.TURNS, turns)) {
             this.throwSettingsFieldError(turns, Jump.TURNS);
         }
         this.turns = turns;
 
         return this;
     }
-
-
 
     getKey(): string {
         const type = super.getKey();
