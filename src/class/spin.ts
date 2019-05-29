@@ -20,7 +20,7 @@ export class Spin extends AbstractFCElement {
 
     setLevel(level: string) {
         if (Spin.LEVELS.indexOf(level) === -1) {
-            throw Error(`There is not "${level}" in the Spin`);
+            this.throwSettingsFieldError(level, Spin.LEVELS);
         }
         this.level = level;
 
@@ -28,6 +28,10 @@ export class Spin extends AbstractFCElement {
     }
 
     getKey(): string {
+        if (!this.level) {
+            this.throwGettingFieldError('level');
+        }
+
         const type = super.getKey();
 
         return type + this.level;

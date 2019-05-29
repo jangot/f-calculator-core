@@ -1,4 +1,7 @@
 import { ValuesType } from '../../listofvalue';
+import { ElementGettingFieldError} from './error/element-getting-field-error';
+import { ElementSettingFieldError} from './error/element-setting-field-error';
+import { ElementDataError} from './error/element-data-error';
 import FCElement from '../interface/element';
 
 export class AbstractFCElement implements FCElement {
@@ -15,7 +18,7 @@ export class AbstractFCElement implements FCElement {
 
     setType(type: string) {
         if (this.constructor.TYPES.indexOf(type) === -1) {
-            throw Error('There is not the type');
+            this.throwSettingsFieldError(type, this.constructor.TYPES);
         }
         this.type = type;
 
@@ -23,6 +26,9 @@ export class AbstractFCElement implements FCElement {
     }
 
     getKey() {
+        if (!this.type) {
+            this.throwGettingFieldError('type');
+        }
         return this.type;
     }
 
@@ -30,8 +36,16 @@ export class AbstractFCElement implements FCElement {
         const key = this.getKey();
 
         if (!this.data[key]) {
-            throw Error(`There is no "${key}" in the values`);
+            throw new ElementDataError(key);
         }
         return this.data[key];
+    }
+
+    protected throwGettingFieldError (type: string) {
+        throw new ElementGettingFieldError(type);
+    }
+
+    protected throwSettingsFieldError (value: string, list: string[]) {
+        throw new ElementSettingFieldError(value, list);
     }
 }

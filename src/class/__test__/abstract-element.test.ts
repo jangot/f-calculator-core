@@ -1,5 +1,5 @@
 import { expect } from 'chai';
-import { AbstractFCElement } from './abstract-element';
+import { AbstractFCElement } from '../abstract-element';
 
 describe('AbstractFCElement', () => {
     it('should return correct key', () => {

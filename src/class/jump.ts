@@ -20,6 +20,9 @@ export class Jump extends AbstractFCElement {
     turns = '';
 
     setTurns(turns: string) {
+        if (Jump.TURNS.indexOf(turns) === -1) {
+            this.throwSettingsFieldError(turns, Jump.TURNS);
+        }
         this.turns = turns;
 
         return this;
