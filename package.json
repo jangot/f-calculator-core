@@ -5,6 +5,7 @@
   "main": "./src/build.js",
   "scripts": {
     "test": "npx tsc && mocha -r ts-node/register src/**/*.test.ts",
+    "build": "npx webpack",
     "go": "npx tsc && node index.js"
   },
   "author": "",
