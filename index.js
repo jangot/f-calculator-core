@@ -1,21 +1,34 @@
 "use strict";
+// import { values } from './listofvalue';
+// import { Spin } from './src/class/spin';
+// import { Jump } from './src/class/jump';
+// import { Road } from './src/class/road';
+//
+// const spin = new Spin(values);
+// spin
+//     .setType(Spin.TYPES.USP)
+//     .setLevel(Spin.LEVELS.LB);
+// console.log(spin.getValue());
+//
+// const jump = new Jump(values);
+// jump
+//     .setType(Jump.TYPES.T)
+//     .setTurns(Jump.TURNS.T1);
+// console.log(jump.getValue());
+//
+// const road = new Road(values);
+// road
+//     .setType(Road.TYPES.ST_SQ)
+//     .setLevel(Road.LEVELS[Road.TYPES.ST_SQ].L1);
+// console.log(road.getValue());
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-var listofvalue_1 = require("./listofvalue");
-var spin_1 = require("./src/class/spin");
-var jump_1 = require("./src/class/jump");
-var road_1 = require("./src/class/road");
-var spin = new spin_1.Spin(listofvalue_1.values);
-spin
-    .setType(spin_1.Spin.TYPES.USP)
-    .setLevel(spin_1.Spin.LEVELS.LB);
-console.log(spin.getValue());
-var jump = new jump_1.Jump(listofvalue_1.values);
-jump
-    .setType(jump_1.Jump.TYPES.T)
-    .setTurns(jump_1.Jump.TURNS.T1);
-console.log(jump.getValue());
-var road = new road_1.Road(listofvalue_1.values);
-road
-    .setType(road_1.Road.TYPES.ST_SQ)
-    .setLevel(road_1.Road.LEVELS[road_1.Road.TYPES.ST_SQ].L1);
+var index_1 = __importDefault(require("./src/index"));
+var road = index_1.default
+    .create()
+    .road()
+    .setType(index_1.default.Road.TYPES.ST_SQ)
+    .setLevel(index_1.default.Road.LEVELS[index_1.default.Road.TYPES.ST_SQ].LB);
 console.log(road.getValue());
