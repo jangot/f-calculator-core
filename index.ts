@@ -23,11 +23,13 @@
 
 import calc from './src/index';
 
-const road = calc
-    .create()
-    .road()
-    .setType(calc.Road.TYPES.ST_SQ)
-    .setLevel(calc.Road.LEVELS[calc.Road.TYPES.ST_SQ].LB);
+const road = calc.create().road();
+const types = road.getAvailableTypes();
+road.setType(types[0]);
+
+const levels = road.getAvailableLevels();
+
+road.setLevel(levels[0]);
 
 console.log(road.getValue());
 

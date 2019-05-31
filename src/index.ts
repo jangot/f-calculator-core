@@ -1,7 +1,7 @@
 import { Jump } from './class/jump';
 import { Road } from './class/road';
 import { Spin } from './class/spin';
-import { values } from '../listofvalue';
+import { values } from './data/listofvalue';
 
 export default {
     Jump,

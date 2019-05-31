@@ -33,6 +33,18 @@ export class Jump extends AbstractFCElement {
     arris = false;
     notFullSpin = '';
 
+    getAvailableTurns() {
+        return this.keyValueToValues(Jump.TYPES);
+    }
+
+    hasArris(): boolean {
+        return !!Jump.HAS_ARRIS[this.type];
+    }
+
+    getAvailableNotFullSpin() {
+        return this.keyValueToValues(Jump.NOT_FULL_SPINS);
+    }
+
     setTurns(turns: string) {
         if (!this.checkValueInList<string>(Jump.TURNS, turns)) {
             this.throwSettingsFieldError(turns, Jump.TURNS);

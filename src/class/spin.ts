@@ -20,6 +20,10 @@ export class Spin extends AbstractFCElement {
 
     level = '';
 
+    getAvailableLevels() {
+        return this.keyValueToValues(Spin.LEVELS);
+    }
+
     setLevel(level: string) {
         if (!this.checkValueInList<string>(Spin.LEVELS, level)) {
             this.throwSettingsFieldError<string>(level, Spin.LEVELS);
@@ -39,4 +43,5 @@ export class Spin extends AbstractFCElement {
 
         return type + this.level;
     }
+
 }

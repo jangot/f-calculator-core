@@ -24,6 +24,10 @@ export class Road extends AbstractFCElement {
 
     level = '';
 
+    getAvailableLevels() {
+        return this.keyValueToValues(Road.LEVELS[this.type] || {});
+    }
+
     setLevel(level: string) {
         const levels = Road.LEVELS[this.type];
 

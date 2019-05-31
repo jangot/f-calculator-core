@@ -28,6 +28,10 @@ export class AbstractFCElement implements FCElement {
         return this;
     }
 
+    getAvailableTypes() {
+        return this.keyValueToValues(this.constructor.TYPES);
+    }
+
     getKey() {
         if (!this.type) {
             this.throwGettingFieldError('type');
@@ -42,6 +46,16 @@ export class AbstractFCElement implements FCElement {
             throw new ElementDataError(key);
         }
         return this.data[key];
+    }
+
+    protected keyValueToValues<T>(keyValue: KeyValue<T>): T[] {
+        const result: T[] = [];
+
+        for (let key in keyValue) {
+            result.push(keyValue[key]);
+        }
+
+        return result
     }
 
     protected checkValueInList<T>(list: KeyValue<T>, value: T) {

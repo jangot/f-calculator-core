@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 import map from 'lodash/map';
-import { values } from '../../../listofvalue';
+import { values } from '../../data/listofvalue';
 import { Jump } from '../jump';
 
 describe('Jump', () => {

@@ -26,9 +26,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 var index_1 = __importDefault(require("./src/index"));
-var road = index_1.default
-    .create()
-    .road()
-    .setType(index_1.default.Road.TYPES.ST_SQ)
-    .setLevel(index_1.default.Road.LEVELS[index_1.default.Road.TYPES.ST_SQ].LB);
+var road = index_1.default.create().road();
+var types = road.getAvailableTypes();
+road.setType(types[0]);
+var levels = road.getAvailableLevels();
+road.setLevel(levels[0]);
 console.log(road.getValue());
