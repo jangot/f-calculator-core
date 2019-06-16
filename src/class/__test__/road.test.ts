@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import { values } from '../../data/listofvalue';
 import { Road } from '../road';
 
-describe('Road', () => {
+describe('Road data', () => {
     const typesList = map(Road.TYPES, (value: string) => value);
 
     for (let type of typesList) {

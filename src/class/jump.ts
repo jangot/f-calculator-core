@@ -32,6 +32,7 @@ export class Jump extends AbstractFCElement {
     turns = '';
     arris = false;
     notFullSpin = '';
+    typeFilter: string[] = [];
 
     getAvailableTurns() {
         return this.keyValueToValues(Jump.TYPES);
@@ -84,5 +85,23 @@ export class Jump extends AbstractFCElement {
         this.arris = arris;
 
         return this;
+    }
+
+    setTypeFilter(filter: string[]) {
+        this.typeFilter = filter;
+
+        return this;
+    }
+
+    getAvailableTypes() {
+        const types = super.getAvailableTypes();
+
+        if (this.typeFilter.length === 0) {
+            return types;
+        }
+
+        return types.filter((item) => {
+            return this.typeFilter.indexOf(item) !== -1;
+        });
     }
 }

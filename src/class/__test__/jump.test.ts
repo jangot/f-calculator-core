@@ -1,9 +1,10 @@
 import { expect } from 'chai';
 import map from 'lodash/map';
-import { values } from '../../data/listofvalue';
+import values from 'lodash/values';
+import { values as data } from '../../data/listofvalue';
 import { Jump } from '../jump';
 
-describe('Jump', () => {
+describe('Jump data', () => {
     const typesList = map(Jump.TYPES, (value: string) => value);
     const turnsList = map(Jump.TURNS, (value: string) => value);
     const notFullSpins = map(Jump.NOT_FULL_SPINS, (value: string) => value);
@@ -11,7 +12,7 @@ describe('Jump', () => {
     for (let type of typesList) {
         for (let turns of turnsList) {
             for (let notFullSpin of notFullSpins) {
-                const el = new Jump(values);
+                const el = new Jump(data);
 
                 el
                     .setType(type)
@@ -24,7 +25,7 @@ describe('Jump', () => {
                 });
 
                 if (Jump.HAS_ARRIS[type]) {
-                    const el = new Jump(values);
+                    const el = new Jump(data);
 
                     el
                         .setType(type)
@@ -32,6 +33,7 @@ describe('Jump', () => {
                         .setTurns(turns)
                         .setArris();
 
+                    // TEXT HERE
                     it(`should have key "${el.getKey()}" in data`, () => {
 
                         const value = el.getValue() !== undefined;
@@ -42,5 +44,40 @@ describe('Jump', () => {
             }
         }
     }
+});
 
+describe('Jump filter', () => {
+    it('should have all types without filter', () => {
+        const jump = new Jump(data);
+
+        const expectTypes = values(Jump.TYPES);
+
+        expect(expectTypes).to.eql(jump.getAvailableTypes());
+    });
+
+    [
+        [Jump.TYPES.T],
+        [Jump.TYPES.T, Jump.TYPES.LZ],
+        [Jump.TYPES.T, Jump.TYPES.S, Jump.TYPES.F]
+    ].forEach((filter) => {
+
+        it(`should have part of types with filter: ${filter}`, () => {
+            const jump = new Jump(data);
+
+            jump.setTypeFilter(filter);
+
+            expect(filter).to.eql(jump.getAvailableTypes());
+        });
+    });
+
+    it('should have part of types after change filter', () => {
+        const jump = new Jump(data);
+
+        const filter = [Jump.TYPES.S, Jump.TYPES.F];
+
+        jump.setTypeFilter([Jump.TYPES.T]);
+        jump.setTypeFilter(filter);
+
+        expect(filter).to.eql(jump.getAvailableTypes());
+    });
 });

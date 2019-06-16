@@ -3,7 +3,7 @@ import map from 'lodash/map';
 import { values } from '../../data/listofvalue';
 import { Spin } from '../spin';
 
-describe('Spin', () => {
+describe('Spin data', () => {
     const typesList = map(Spin.TYPES, (value: string) => value);
     const levelsList = map(Spin.LEVELS, (value: string) => value);
 

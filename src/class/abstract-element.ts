@@ -1,7 +1,8 @@
+import noop from 'lodash/noop';
 import { ElementGettingFieldError} from './error/element-getting-field-error';
 import { ElementSettingFieldError} from './error/element-setting-field-error';
 import { ElementDataError} from './error/element-data-error';
-import FCElement from '../interface/element';
+import { FCElement, FCElementCallback } from '../interface/element';
 import { KeyValue } from '../interface/key-value';
 
 export class AbstractFCElement implements FCElement {
@@ -14,6 +15,8 @@ export class AbstractFCElement implements FCElement {
     data: KeyValue<number> = {};
     type = '';
 
+    protected events: KeyValue<Function[]> = {};
+
     constructor(data: KeyValue<number>) {
         this.data = data;
     }
@@ -25,7 +28,13 @@ export class AbstractFCElement implements FCElement {
 
         this.type = type;
 
+        this.dispatch('type');
+
         return this;
+    }
+
+    getType() {
+        return this.type;
     }
 
     getAvailableTypes() {
@@ -46,6 +55,36 @@ export class AbstractFCElement implements FCElement {
             throw new ElementDataError(key);
         }
         return this.data[key];
+    }
+
+    onChange(name: string, cb: FCElementCallback) {
+        this.events[name] = this.events[name] || [];
+
+        this.events[name].push(cb);
+
+        return this.events[name].length - 1;
+    }
+
+    removeEvent(name: string, index: number) {
+        if (!this.events[name] ||!this.events[name][index]) {
+            return this;
+        }
+
+        delete this.events[name][index];
+
+        return this;
+    }
+
+    protected dispatch(name: string) {
+        if (!this.events[name]) {
+            return this;
+        }
+
+        this.events[name].forEach(cb => {
+            if (cb) cb(this);
+        });
+
+        return this;
     }
 
     protected keyValueToValues<T>(keyValue: KeyValue<T>): T[] {
