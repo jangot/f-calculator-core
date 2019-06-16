@@ -4,11 +4,13 @@ import { KeyValue } from '../interface/key-value';
 export class Jump extends AbstractFCElement {
 
     static TYPES: KeyValue<string> = {
+        A: 'a',
         T: 't',
         S: 's',
         LO: 'lo',
         F: 'f',
-        LZ: 'lz'
+        LZ: 'lz',
+        EU: 'eu'
     };
 
     static TURNS: KeyValue<string> = {
@@ -18,9 +20,13 @@ export class Jump extends AbstractFCElement {
         T4: '4'
     };
 
+    static TURNS_FILTER: KeyValue<string[]> = {
+        [Jump.TYPES.EU]: [Jump.TURNS.T1]
+    };
+
     static HAS_ARRIS: KeyValue<boolean> = {
         [Jump.TYPES.LZ]: true,
-        [Jump.TYPES.F]: true,
+        [Jump.TYPES.F]: true
     };
 
     static NOT_FULL_SPINS: KeyValue<string> = {
@@ -35,7 +41,15 @@ export class Jump extends AbstractFCElement {
     typeFilter: string[] = [];
 
     getAvailableTurns() {
-        return this.keyValueToValues(Jump.TYPES);
+        const turns = this.keyValueToValues(Jump.TURNS);
+
+        if (!Jump.TURNS_FILTER[this.type]) {
+            return turns;
+        }
+
+        return turns.filter((t) => {
+            return Jump.TURNS_FILTER[this.type].indexOf(t) > -1;
+        })
     }
 
     hasArris(): boolean {

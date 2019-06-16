@@ -6,16 +6,16 @@ import { Jump } from '../jump';
 
 describe('Jump data', () => {
     const typesList = map(Jump.TYPES, (value: string) => value);
-    const turnsList = map(Jump.TURNS, (value: string) => value);
     const notFullSpins = map(Jump.NOT_FULL_SPINS, (value: string) => value);
 
     for (let type of typesList) {
+        const el = new Jump(data);
+        el.setType(type);
+
+        const turnsList = el.getAvailableTurns();
         for (let turns of turnsList) {
             for (let notFullSpin of notFullSpins) {
-                const el = new Jump(data);
-
                 el
-                    .setType(type)
                     .setNotFullSpin(notFullSpin)
                     .setTurns(turns);
                 it(`should have key "${el.getKey()}" in data`, () => {
@@ -33,7 +33,7 @@ describe('Jump data', () => {
                         .setTurns(turns)
                         .setArris();
 
-                    // TEXT HERE
+                    // TEST HERE
                     it(`should have key "${el.getKey()}" in data`, () => {
 
                         const value = el.getValue() !== undefined;

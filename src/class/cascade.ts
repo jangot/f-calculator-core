@@ -7,6 +7,15 @@ export type AvailableTypes = KeyValue<LastLevel>;
 
 export class Cascade extends AbstractFCElement{
 
+    static AVAILABLE_TYPES: AvailableTypes = {
+        [Jump.TYPES.A]: {
+            [Jump.TYPES.A]: [],
+            [Jump.TYPES.T]: [],
+            [Jump.TYPES.LO]: [],
+            [Jump.TYPES.EU]: [],
+        }
+    };
+
     jumps: Jump[] = [];
     availableTypes: AvailableTypes = {};
 
