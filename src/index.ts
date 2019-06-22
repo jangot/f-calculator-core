@@ -2,26 +2,26 @@ import { Jump } from './class/jump';
 import { Road } from './class/road';
 import { Spin } from './class/spin';
 import { values, ValuesType } from './data/listofvalue';
-import { Cascade, AvailableTypes } from './class/cascade';
+import { Cascade } from './class/cascade';
 
 export default {
     Jump,
     Road,
     Spin,
     Cascade,
-    create: (val: ValuesType = values, cascadeTypes: AvailableTypes = {}) => {
+    create: (data: ValuesType = values) => {
         return {
             road() {
-                return new Road(val)
+                return new Road(data)
             },
             jump() {
-                return new Jump(val);
+                return new Jump(data);
             },
             spin() {
-                return new Spin(val);
+                return new Spin(data);
             },
             cascade() {
-                return new Cascade(val, cascadeTypes);
+                return new Cascade(data);
             }
         }
     }
