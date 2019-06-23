@@ -31,4 +31,18 @@ var types = road.getAvailableTypes();
 road.setType(types[0]);
 var levels = road.getAvailableLevels();
 road.setLevel(levels[0]);
-console.log(road.getValue());
+console.log('road', road.getValue());
+var cascade = index_1.default.create().cascade();
+var fJump = cascade.addJump();
+var fAvTypes = fJump.getAvailableTypes();
+var fAvTurns = fJump.getAvailableTurns();
+fJump
+    .setType(fAvTypes[0])
+    .setTurns(fAvTurns[0]);
+var sJump = cascade.addJump();
+var sAvTypes = sJump.getAvailableTypes();
+var sAvTurns = sJump.getAvailableTurns();
+sJump
+    .setType(sAvTypes[0])
+    .setTurns(sAvTurns[1]);
+console.log('cascade', cascade.getValue());

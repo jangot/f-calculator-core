@@ -31,5 +31,25 @@ const levels = road.getAvailableLevels();
 
 road.setLevel(levels[0]);
 
-console.log(road.getValue());
+console.log('road', road.getValue());
+
+const cascade = calc.create().cascade();
+const fJump = cascade.addJump();
+const fAvTypes = fJump.getAvailableTypes();
+const fAvTurns = fJump.getAvailableTurns();
+
+fJump
+    .setType(fAvTypes[0])
+    .setTurns(fAvTurns[0]);
+
+const sJump = cascade.addJump();
+const sAvTypes = sJump.getAvailableTypes();
+const sAvTurns = sJump.getAvailableTurns();
+
+sJump
+    .setType(sAvTypes[0])
+    .setTurns(sAvTurns[1]);
+console.log('cascade', cascade.getValue());
+
+
 
