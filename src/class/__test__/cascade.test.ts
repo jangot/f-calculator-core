@@ -36,7 +36,7 @@ function twoJumpsWithTurns(cb: (a: Jump, b: Jump, cascade: Cascade) => void) {
     });
 }
 
-describe.only('Cascade', () => {
+describe('Cascade', () => {
     it('first jump should have all available types', () => {
         const cascade = new Cascade(data, {});
 
