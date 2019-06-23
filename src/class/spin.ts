@@ -64,7 +64,7 @@ export class Spin extends AbstractFCElement {
     }
 
     hasError() {
-        return Spin.HAS_ERROR.indexOf(this.type);
+        return Spin.HAS_ERROR.indexOf(this.type) > -1;
     }
 
     getKey(): string {
