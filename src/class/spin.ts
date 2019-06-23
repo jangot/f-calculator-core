@@ -33,6 +33,9 @@ export class Spin extends AbstractFCElement {
         Spin.TYPES.CCOSP,
     ];
 
+    static F = 'f';
+    static V = 'v';
+
     level = '';
     error = '';
     f = '';
@@ -51,13 +54,13 @@ export class Spin extends AbstractFCElement {
         return this;
     }
 
-    setError(error: string = 'v') {
+    setError(error: string = Spin.V) {
         this.error = error;
 
         return this;
     }
 
-    setF(value = 'f') {
+    setF(value = Spin.F) {
         this.f = value;
 
         return this;
